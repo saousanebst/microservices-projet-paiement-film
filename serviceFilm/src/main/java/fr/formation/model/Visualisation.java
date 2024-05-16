@@ -1,10 +1,24 @@
 package fr.formation.model;
 
+import org.hibernate.annotations.UuidGenerator;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "visualisation")
 public class Visualisation {
     
+    @Id
+    @UuidGenerator
     private String id;
 
+    @Column(nullable = false)
     private String userId;
+
+    @Column(nullable = false)
     private String filmId;
 
 
