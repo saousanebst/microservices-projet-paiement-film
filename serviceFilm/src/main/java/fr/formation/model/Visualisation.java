@@ -2,8 +2,11 @@ package fr.formation.model;
 
 import org.hibernate.annotations.UuidGenerator;
 
+import fr.formation.enumerator.LocationEtat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -20,6 +23,9 @@ public class Visualisation {
 
     @Column(nullable = false)
     private String filmId;
+
+    @Enumerated(EnumType.STRING)
+    private LocationEtat etat;
 
 
     public String getId() {
@@ -39,6 +45,12 @@ public class Visualisation {
     }
     public void setFilmId(String filmId) {
         this.filmId = filmId;
+    }
+    public LocationEtat getEtat() {
+        return etat;
+    }
+    public void setEtat(LocationEtat etat) {
+        this.etat = etat;
     }
       
 }
