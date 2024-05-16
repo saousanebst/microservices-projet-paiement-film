@@ -10,7 +10,7 @@ import fr.formation.enumerator.LocationEtat;
 import fr.formation.model.Visualisation;
 import fr.formation.repository.VisualisationRepository;
 
-@Component("onLocationValided")
+@Component("onLocationValidated")
 public class LocationAcceptedEventConsumer implements Consumer<String>{
 
     @Autowired
@@ -25,7 +25,7 @@ public class LocationAcceptedEventConsumer implements Consumer<String>{
         if (optVisualisation.isPresent()) {
             Visualisation visualisation = optVisualisation.get();
             
-            visualisation.setEtat(LocationEtat.OK);
+            visualisation.setEtat(LocationEtat.ACCEPTED);
 
             this.visualisationRepository.save(visualisation);
         }

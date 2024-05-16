@@ -1,5 +1,5 @@
 package fr.formation.enumerator;
 
 public enum LocationEtat {
-    ATTENTE, OK;
+    ATTENTE, ACCEPTED;
 }

@@ -12,12 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import fr.formation.enumerator.LocationEtat;
 import fr.formation.model.Film;
+import fr.formation.model.Visualisation;
 import fr.formation.repository.FilmRepository;
+import fr.formation.repository.VisualisationRepository;
 import fr.formation.request.CreateFilmRequest;
 import fr.formation.response.FilmResponse;
 
@@ -37,6 +41,9 @@ public class FilmApiController {
 
     @Autowired
     private StreamBridge streamBridge;
+
+    @Autowired
+    private VisualisationRepository visualisationRepository;
 
 
     @GetMapping
@@ -106,6 +113,28 @@ public class FilmApiController {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "L'utilisateur n'est pas autorisé à visualiser ce film.");
         }
     }*/
+
+    @PostMapping("/louer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String louerFilm(@RequestParam String userId, @RequestParam String filmId, @RequestParam double prixLocation) {
+        
+
+        // Créer une nouvelle instance de Visualisation en attente
+        Visualisation visualisation = new Visualisation();
+        visualisation.setUserId(userId);
+        visualisation.setFilmId(filmId);
+        visualisation.setEtat(LocationEtat.ATTENTE);
+
+
+        // Envoyer un événement de demande de location au service paiement
+        streamBridge.send("demande.location", visualisation);
+        
+        // Sauvegarder la visualisation dans la base de données
+        Visualisation savedVisualisation = visualisationRepository.save(visualisation);
+
+        // Retourner l'ID de la visualisation créée
+        return savedVisualisation.getId();
+    }
 
      
 }
