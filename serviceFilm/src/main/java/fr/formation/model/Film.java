@@ -26,9 +26,7 @@ public class Film {
     @Column(nullable = false)
     private double prixLocation;
 
-    private String userId;
-
-
+    
     public String getId() {
         return id;
     }
@@ -59,11 +57,6 @@ public class Film {
     public void setPrixLocation(double prixLocation) {
         this.prixLocation = prixLocation;
     }
-    public String getUserId() {
-        return userId;
-    }
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
+    
     
 }

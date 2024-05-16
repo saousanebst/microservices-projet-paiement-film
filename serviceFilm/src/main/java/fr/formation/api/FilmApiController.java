@@ -7,14 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -69,27 +66,50 @@ public class FilmApiController {
         FilmResponse response = new FilmResponse();
 
         BeanUtils.copyProperties(film, response);
-        
-         
+              
         String name = this.circuitBreakerFactory.create("paiementService").run(
-            () -> this.restTemplate.getForObject("lb://paiement-service/api/paiement/" + film.getUserId() + "/name", String.class)
+            () -> this.restTemplate.getForObject("lb://paiement-service/api/paiement/" + film.getId()+ "/name", String.class)
             ,
-            t -> "- no name -"
+            t -> "no name"
         );
 
-        response.setUserId(name);
-        
+        response.setUserId(name);      
         return response;
     }
 
-    
+   /*
     @PostMapping("/verif-location")
     @ResponseStatus(HttpStatus.CREATED)
     public List<FilmResponse> locationFilm(@RequestParam String id, @RequestParam String userId) {
-        List<Film> films = this.filmRepository.findAllByIdAndUser(id, userId);
+        
+        
         return films.stream()
                     .map(this::map) // Utilisez votre méthode map pour mapper les films en FilmResponse
                     .toList();
-    }
+    }*/
 
+    /* 
+    @PostMapping("/verif-location")
+    @ResponseStatus(HttpStatus.CREATED)
+    public FilmResponse locationFilm(@RequestParam String id, @RequestParam String userId) {
+        // Récupérer les informations du film à partir de son identifiant (id)
+        Film film = filmRepository.getFilmById(id);
+        
+        // Vérifier si l'utilisateur peut visualiser le film
+        boolean utilisateurPeutVisualiser = paiementService.verifierLocation(userId, film.getPrixLocation());
+        
+        // Si l'utilisateur peut visualiser le film, retourner les détails du film
+        if (utilisateurPeutVisualiser) {
+            return map(film); // Utilisez votre méthode map pour mapper le film en FilmResponse
+        } else {
+            // Gérer le cas où l'utilisateur ne peut pas visualiser le film
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "L'utilisateur n'est pas autorisé à visualiser ce film.");
+        }
+    }*/
+
+     
 }
+
+   
+
+
