@@ -1,6 +1,5 @@
 package fr.formation.request;
 
-import java.math.BigDecimal;
 
 
 
@@ -8,7 +7,7 @@ public class CreateVisualisationRequest {
     
    private String userId;
    private String filmId; 
-   private BigDecimal prixLocation;
+   //private BigDecimal prixLocation;
 
 
 public String getUserId() {
@@ -23,11 +22,6 @@ public String getFilmId() {
 public void setFilmId(String filmId) {
     this.filmId = filmId;
 }
-public BigDecimal getPrixLocation() {
-    return prixLocation;
-}
-public void setPrixLocation(BigDecimal prixLocation) {
-    this.prixLocation = prixLocation;
-}
+
   
 }

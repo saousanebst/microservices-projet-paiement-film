@@ -11,7 +11,7 @@ import fr.formation.model.Film;
 public interface FilmRepository extends JpaRepository<Film, String>{
 
     
-	//Film getFilmById(String id);
+	//Film FindFilmById(String id);
 
     //public List<Film> findAllByUserIdAndEtat(String userId, LocationEtat etat);
     

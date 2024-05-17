@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.server.ResponseStatusException;
 
 import fr.formation.command.VisualisationCommand;
 import fr.formation.enumerator.LocationEtat;
@@ -114,7 +115,12 @@ public class FilmApiController {
     @PostMapping("/louer")
     @ResponseStatus(HttpStatus.CREATED)
     public String louerFilm(@RequestBody CreateVisualisationRequest requestVisualisation) {
-        
+
+        Film film = this.filmRepository.findById(requestVisualisation.getFilmId()).get();
+
+        if(this.filmRepository.findById(requestVisualisation.getFilmId()).isEmpty()){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Film non trouvé");
+        }
 
         // Créer une nouvelle instance de Visualisation en attente
         Visualisation visualisation = new Visualisation();
@@ -122,7 +128,7 @@ public class FilmApiController {
         BeanUtils.copyProperties(requestVisualisation, visualisation);
 
         visualisation.setEtat(LocationEtat.ATTENTE);
-
+        
         // Sauvegarder la visualisation dans la base de données
         Visualisation savedVisualisation = visualisationRepository.save(visualisation);
 
@@ -130,7 +136,9 @@ public class FilmApiController {
 
         visualisationCommand.setId(savedVisualisation.getId());
         visualisationCommand.setUserId(savedVisualisation.getUserId());
-        visualisationCommand.setPrixLocation(requestVisualisation.getPrixLocation());
+        
+        //visualisationCommand.setPrixLocation(requestVisualisation.getPrixLocation());
+        visualisationCommand.setPrixLocation(film.getPrixLocation());
 
         // Envoyer un événement de demande de location au service paiement
         streamBridge.send("verif.credit.location", visualisationCommand);
