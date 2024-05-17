@@ -1,16 +1,19 @@
 package fr.formation.repository;
 
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-
+import fr.formation.enumerator.LocationEtat;
 import fr.formation.model.Film;
 
 public interface FilmRepository extends JpaRepository<Film, String>{
 
-    //ici faudra creer methode getFilmById
-	//Film getFilmById(String id);
     
+	//Film getFilmById(String id);
+
+    //public List<Film> findAllByUserIdAndEtat(String userId, LocationEtat etat);
     
 
 }

@@ -1,5 +1,7 @@
 package fr.formation.model;
 
+import java.math.BigDecimal;
+
 import org.hibernate.annotations.UuidGenerator;
 
 import fr.formation.enumerator.LocationEtat;
@@ -27,6 +29,7 @@ public class Visualisation {
     @Enumerated(EnumType.STRING)
     private LocationEtat etat;
 
+    
 
     public String getId() {
         return id;

@@ -1,5 +1,7 @@
 package fr.formation.model;
 
+import java.math.BigDecimal;
+
 import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.Column;
@@ -24,7 +26,7 @@ public class Film {
     private int nombreVue;
 
     @Column(nullable = false)
-    private double prixLocation;
+    private BigDecimal prixLocation;
 
     
     public String getId() {
@@ -57,6 +59,9 @@ public class Film {
     public void setPrixLocation(double prixLocation) {
         this.prixLocation = prixLocation;
     }
+    public void incrementNombreVue() {
+        this.nombreVue++;
+    }
     
-    
+   
 }
