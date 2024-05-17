@@ -1,6 +1,5 @@
 package fr.formation.model;
 
-import java.math.BigDecimal;
 
 import org.hibernate.annotations.UuidGenerator;
 

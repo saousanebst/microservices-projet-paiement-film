@@ -53,14 +53,15 @@ public class Film {
     public void setNombreVue(int nombreVue) {
         this.nombreVue = nombreVue;
     }
-    public double getPrixLocation() {
-        return prixLocation;
-    }
-    public void setPrixLocation(double prixLocation) {
-        this.prixLocation = prixLocation;
-    }
+    
     public void incrementNombreVue() {
         this.nombreVue++;
+    }
+    public BigDecimal getPrixLocation() {
+        return prixLocation;
+    }
+    public void setPrixLocation(BigDecimal prixLocation) {
+        this.prixLocation = prixLocation;
     }
     
    
