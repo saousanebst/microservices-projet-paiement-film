@@ -23,6 +23,7 @@ import fr.formation.model.Visualisation;
 import fr.formation.repository.FilmRepository;
 import fr.formation.repository.VisualisationRepository;
 import fr.formation.request.CreateFilmRequest;
+import fr.formation.request.CreateVisualisationRequest;
 import fr.formation.response.FilmResponse;
 
 @RestController
@@ -48,6 +49,8 @@ public class FilmApiController {
 
     @GetMapping
     public List<FilmResponse> findAll() {
+        
+        //return this.repository.findAllByEtat(CommentaireEtat.OK).stream()
         return this.filmRepository.findAll().stream()           
             .map(this::map)
             .toList();
@@ -116,22 +119,23 @@ public class FilmApiController {
 
     @PostMapping("/louer")
     @ResponseStatus(HttpStatus.CREATED)
-    public String louerFilm(@RequestParam String userId, @RequestParam String filmId, @RequestParam double prixLocation) {
+    public String louerFilm(@RequestBody CreateVisualisationRequest requestVisualisation) {
         
 
         // Créer une nouvelle instance de Visualisation en attente
         Visualisation visualisation = new Visualisation();
-        visualisation.setUserId(userId);
-        visualisation.setFilmId(filmId);
+        
+        BeanUtils.copyProperties(requestVisualisation, visualisation);
+
         visualisation.setEtat(LocationEtat.ATTENTE);
 
+        // Sauvegarder la visualisation dans la base de données
+        Visualisation savedVisualisation = visualisationRepository.save(visualisation);
 
         // Envoyer un événement de demande de location au service paiement
         streamBridge.send("demande.location", visualisation);
         
-        // Sauvegarder la visualisation dans la base de données
-        Visualisation savedVisualisation = visualisationRepository.save(visualisation);
-
+    
         // Retourner l'ID de la visualisation créée
         return savedVisualisation.getId();
     }

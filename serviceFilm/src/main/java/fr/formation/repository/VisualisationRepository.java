@@ -8,6 +8,9 @@ import fr.formation.enumerator.LocationEtat;
 import fr.formation.model.Visualisation;
 
 public interface VisualisationRepository extends JpaRepository<Visualisation, String>{
+
     public List<Visualisation> findAllByEtat(LocationEtat etat);
+
+    
 
 }

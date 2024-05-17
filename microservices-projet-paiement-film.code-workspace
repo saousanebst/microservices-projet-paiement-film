@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../Projets_Jeremy/discovery-server"
+		},
+		{
+			"path": "../../AIRE-240220-GIT/MICROSERVICES/discovery-server"
 		}
 	],
 	"settings": {}
