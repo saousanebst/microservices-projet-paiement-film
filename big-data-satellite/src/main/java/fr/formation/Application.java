@@ -22,7 +22,7 @@ Configuration config = new Configuration();
 // Essayer de se connecter au serveur Hadoop HDFS
 try (FileSystem hdfs = FileSystem.get(new URI(HDFS_ENDPOINT), config)) {
 // Spécifier le chemin du fichier à lire sur HDFS
-Path file = new Path("/ace-2007-2011/2007/200701.csv");
+Path file = new Path("/solar-2007/200701.csv");
 
 // Vérifier si le fichier existe
 if (!hdfs.exists(file)) {
