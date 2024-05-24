@@ -1,12 +1,13 @@
 package fr.formation.request;
 
+import java.math.BigDecimal;
 
 public class CreateFilmRequest {
     
     private String nom;
     private String description;
     private int nombreVue;
-    private double prixLocation;
+    private BigDecimal prixLocation;
 
     private String userId;
 
@@ -28,17 +29,18 @@ public class CreateFilmRequest {
     public void setNombreVue(int nombreVue) {
         this.nombreVue = nombreVue;
     }
-    public double getPrixLocation() {
-        return prixLocation;
-    }
-    public void setPrixLocation(double prixLocation) {
-        this.prixLocation = prixLocation;
-    }
+    
     public String getUserId() {
         return userId;
     }
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+    public BigDecimal getPrixLocation() {
+        return prixLocation;
+    }
+    public void setPrixLocation(BigDecimal prixLocation) {
+        this.prixLocation = prixLocation;
     }
 
 }
