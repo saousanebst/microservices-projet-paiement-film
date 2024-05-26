@@ -1,34 +1,34 @@
 package fr.formation.api;
-
-import java.util.List;
-
+import fr.formation.service.HdfsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.formation.model.Event;
-import fr.formation.service.EventService;
+import java.util.List;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/events")
 public class EventApiController {
-    
+
+    // Injection du service HdfsService
     @Autowired
-    private EventService hdfsService;
+    private HdfsService hdfsService;
 
-    // Endpoint pour obtenir le nombre d'événements notables pour une année donnée
-    @GetMapping("/{year}/count")
-    public int getNotableEventCount(@PathVariable int year) throws Exception {
-        return hdfsService.getNotableEvents(year).size();
+    // Méthode pour récupérer les événements notables pour une année donnée
+    @GetMapping("/{year}")
+    public ResponseEntity<List<String>> getNotableEventsByYear(@PathVariable int year) {
+        try {
+            // Appel du service pour récupérer les événements notables
+            List<String> events = hdfsService.getNotableEvents(year);
+            // Retourne la liste des événements avec un statut OK
+            return ResponseEntity.ok(events);
+        } catch (Exception e) {
+            // En cas d'erreur, retourne une réponse avec un statut d'erreur interne du serveur
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
-
-    // Endpoint pour obtenir les détails des événements notables pour une année donnée
-    @GetMapping("/{year}/details")
-    public List<Event> getNotableEventDetails(@PathVariable int year) throws Exception {
-        return hdfsService.getNotableEvents(year);
-    }
-
-    
 }

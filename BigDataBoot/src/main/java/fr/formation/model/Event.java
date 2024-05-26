@@ -1,19 +1,28 @@
 package fr.formation.model;
 
+import java.time.LocalDateTime;
+
 public class Event {
     
 
-    private String date ; 
+    private LocalDateTime date ; 
 
     private double bz; 
 
     private double variationMagnetique;
 
-    public String getDate() {
+
+    public Event(LocalDateTime date2, double bz, double variationMagnetique) {
+        this.date = date2;
+        this.bz = bz;
+        this.variationMagnetique = variationMagnetique;
+    }
+
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

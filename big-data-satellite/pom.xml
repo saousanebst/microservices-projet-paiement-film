@@ -15,7 +15,15 @@
         <hadoop.version>3.4.0</hadoop.version>
     </properties>
 
-    <dependencies>       
+    <dependencies>   
+
+        <dependency>
+            <groupId>fr.formation</groupId>
+            <artifactId>BigDataBoot</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        
+
         <dependency>
             <groupId>org.apache.hadoop</groupId>
             <artifactId>hadoop-client</artifactId>
