@@ -10,6 +10,9 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 
+import fr.formation.acedscover.EventMapper;
+import fr.formation.acedscover.EventReducer;
+
 
 
 public class Application {
@@ -17,7 +20,7 @@ public class Application {
 
 public static void main(String[] args) throws Exception{
 
-    // Créer une configuration de job
+        // Créer une configuration de job
         JobConf conf = new JobConf(Application.class);
         conf.setJobName("EventCount");
 
@@ -45,6 +48,5 @@ public static void main(String[] args) throws Exception{
         JobClient.runJob(conf);
   
 
-
-}
+    }
 }

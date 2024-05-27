@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.acedscover;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class EventMapper extends MapReduceBase implements Mapper<LongWritable, T
         // Convertir la ligne en une chaîne de caractères
         String line = value.toString();
         // Diviser la ligne en champs en utilisant la virgule comme séparateur
-        String[] fields = line.split(",");
+        String[] fields = line.split(";");
         
         // Vérifier si la ligne a toutes les colonnes nécessaires (Date, Speed, Density, Bt, Bz)
         if (fields.length < 5) {
