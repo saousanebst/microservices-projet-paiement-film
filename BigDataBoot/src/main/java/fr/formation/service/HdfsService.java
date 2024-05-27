@@ -9,11 +9,15 @@ import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class HdfsService {
+
+    private static final String HDFS_ENDPOINT = "hdfs://20.199.14.75:8020";
+
 
     // Déclaration du logger
     private static final Logger logger = LoggerFactory.getLogger(HdfsService.class);
@@ -26,14 +30,14 @@ public class HdfsService {
         Configuration configuration = new Configuration();
 
         // Obtention du système de fichiers HDFS
-        FileSystem fs = FileSystem.get(configuration);
+        FileSystem fs = FileSystem.get(new URI(HDFS_ENDPOINT), configuration);
 
         // Construction du chemin du fichier de résultats solar
         Path[] paths = new Path[]{
                 //new Path("/solar-" + year + "/GROUPE1"),
                 //new Path("/Kiruna/" + year + "/GROUPE1_KIRUNA")
-                new Path(year + "/GROUPE1/part-00000"),
-                new Path(year+"/GROUPE1_KIRUNA/part-00 ")
+                new Path(HDFS_ENDPOINT + "/GROUPE1/part-00000"),
+                new Path(HDFS_ENDPOINT + "/GROUPE1_KIRUNA/part-00000")
         
         };
 

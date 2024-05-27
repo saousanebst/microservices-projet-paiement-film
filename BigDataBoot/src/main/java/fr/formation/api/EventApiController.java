@@ -19,6 +19,7 @@ import fr.formation.service.HdfsService;
 @CrossOrigin("*")
 public class EventApiController {
 
+
     // Ajout du logger
     private static final Logger logger = LoggerFactory.getLogger(EventApiController.class);
 
