@@ -15,8 +15,17 @@ public class EventReducerKiruna extends MapReduceBase implements Reducer<Text, I
     @Override
     public void reduce(Text key, Iterator<IntWritable> values, OutputCollector<Text, IntWritable> output,
             Reporter reporter) throws IOException {
+
+                int totalCount = 0;
+                // Parcourir les valeurs et les additionner pour obtenir le nombre total d'occurrences
+                while (values.hasNext()) {
+                    totalCount += values.next().get();
+                }
+                // Émettre la clé (année) et le nombre total d'occurrences
+                output.collect(key, new IntWritable(totalCount));
+            }
         
-            
-    }
+        
+
     
 }

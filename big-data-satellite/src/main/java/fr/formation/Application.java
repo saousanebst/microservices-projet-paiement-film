@@ -10,8 +10,8 @@ import org.apache.hadoop.mapred.JobConf;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 
-import fr.formation.acedscover.EventMapper;
-import fr.formation.acedscover.EventReducer;
+import fr.formation.kiruna.EventMapperKiruna;
+import fr.formation.kiruna.EventReducerKiruna;
 
 
 
@@ -24,11 +24,15 @@ public static void main(String[] args) throws Exception{
 
         // Créer une configuration de job
         JobConf conf = new JobConf(Application.class);
-        conf.setJobName("EventCount");
+        //conf.setJobName("EventCount");
+        conf.setJobName("EventCountKiruna");
 
         // Spécifier les classes de mapper et de reducer
-        conf.setMapperClass(EventMapper.class);
-        conf.setReducerClass(EventReducer.class);
+        //conf.setMapperClass(EventMapper.class);
+        //conf.setReducerClass(EventReducer.class);
+
+        conf.setMapperClass(EventMapperKiruna.class);
+        conf.setReducerClass(EventReducerKiruna.class);
 
         // Spécifier les types de données d'entrée et de sortie
         conf.setInputFormat(TextInputFormat.class);

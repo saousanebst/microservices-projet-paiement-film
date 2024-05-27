@@ -23,20 +23,31 @@
 	
 	<dependencies>
 
+	
+
+		<!--
 		<dependency>
     		<groupId>fr.formation</groupId>
     		<artifactId>big-data-satellite</artifactId>
     		<version>1.0-SNAPSHOT</version>
 		</dependency>
+		-->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		 <dependency>
+        	<groupId>org.apache.hadoop</groupId>
+        	<artifactId>hadoop-client</artifactId>
+       		<version>3.4.0</version>
+    	</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -44,11 +55,19 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		 <dependency>
+      		<groupId>org.postgresql</groupId>
+      		<artifactId>postgresql</artifactId>
+      		<scope>runtime</scope>
+    	</dependency>
+	
 	</dependencies>
 
 	<build>

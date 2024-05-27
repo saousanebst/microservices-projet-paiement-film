@@ -17,6 +17,10 @@ public class EventMapperKiruna extends MapReduceBase implements Mapper<LongWrita
     @Override
     public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter)
             throws IOException {
+
+         if(key.get() == 0){
+            return;
+          }
         
         // Convertir la ligne en une chaîne de caractères
         String line = value.toString();
