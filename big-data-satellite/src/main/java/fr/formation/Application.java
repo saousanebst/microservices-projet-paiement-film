@@ -16,6 +16,8 @@ import fr.formation.acedscover.EventReducer;
 
 
 public class Application {
+
+
     
 
 public static void main(String[] args) throws Exception{
