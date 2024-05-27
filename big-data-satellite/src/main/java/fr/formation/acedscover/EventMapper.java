@@ -24,6 +24,11 @@ public class EventMapper extends MapReduceBase implements Mapper<LongWritable, T
     @Override
     public void map(LongWritable key, Text value, OutputCollector<Text, IntWritable> output, Reporter reporter)
             throws IOException {
+
+        if(key.get() == 0){
+            return;
+        }
+        
         // Convertir la ligne en une chaîne de caractères
         String line = value.toString();
         // Diviser la ligne en champs en utilisant la virgule comme séparateur

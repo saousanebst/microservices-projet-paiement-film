@@ -1,3 +1,5 @@
 C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\Application.java
-C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\EventMapper.java
-C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\EventReducer.java
+C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\acedscover\EventReducer.java
+C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\acedscover\EventMapper.java
+C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\kiruna\EventReducerKiruna.java
+C:\Users\Hajar\Desktop\microservices-projet-paiement-film\big-data-satellite\src\main\java\fr\formation\kiruna\EventMapperKiruna.java

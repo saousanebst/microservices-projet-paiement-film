@@ -1,3 +1,5 @@
-fr\formation\EventReducer.class
+fr\formation\acedscover\EventReducer.class
+fr\formation\kiruna\EventReducerKiruna.class
+fr\formation\acedscover\EventMapper.class
 fr\formation\Application.class
-fr\formation\EventMapper.class
+fr\formation\kiruna\EventMapperKiruna.class
